@@ -1,0 +1,40 @@
+type Mutation {
+	createUser(
+		address: ID!,
+		identityNumber: String!,
+		fullName: String!,
+		fatherORhusbandName: String,
+		dob: String,
+		phoneNumber: String,
+		gender: String,
+		city: String,
+		country: String
+	): User
+}
+
+type Query  {
+	userInformation(address: ID!, identityNumber: String): User
+	usersInformation(limit: Int, nextToken: String): UsersPagination!
+}
+
+type User {
+	address: ID!
+	identityNumber: String!
+	fullName: String!
+	fatherORhusbandName: String
+	dob: String
+	phoneNumber: String
+	gender: String
+	city: String
+	country: String
+}
+
+type UsersPagination {
+	User: [User!]!
+	nextToken: String
+}
+
+type schema {
+	mutation: Mutation
+	query: Query
+}
